@@ -186,17 +186,14 @@ function authenticateToken(req, res, next) {
         return res.status(401).json({ message: 'Invalid authorization token' });
       }
       const { date, task, status } = req.body;
-  
-      // Create a new task and associate it with the logged in user
+       // Create a new task and associate it with the logged in user
       const newTask = new Task({
         date,
         task,
         status,
-        userId: user.email
+        userId: user.email,
       });
-  
       await newTask.save();
-  
       res.status(200).json({ message: 'Task created successfully' });
     } catch (err) {
       console.log(err.message)
@@ -295,7 +292,7 @@ app.get('/tasks', authenticateToken,async (req, res) => {
   
   
   
-
+// Mongodb connectiom
 mongoose.connect('mongodb://localhost:27017/elRED_Assign', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(3000, () => console.log('Server started on port 3000'));
