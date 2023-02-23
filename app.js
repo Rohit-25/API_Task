@@ -41,8 +41,8 @@ app.post('/register', async (req, res) => {
 
         res.send(`User ${name} with email ${email} registered successfully`);
     } catch (err) {
-      console.log(err.message)
-        res.send('Unable to register user');
+    
+        res.send('User Already Exists!');
 
     }
 })
