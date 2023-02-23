@@ -215,8 +215,10 @@ app.post('/tasks', authenticateToken, async (req, res) => {
         });
         await newTask.save();
         res.status(200).json({
-            message: 'Task created successfully'
-        });
+          message: `Task created successfully with id : ${newTask._id}`
+          
+      })
+       
     } catch (err) {
         console.log(err.message)
         return res.status(401).json({
@@ -296,7 +298,7 @@ app.delete('/task/:id', authenticateToken, async (req, res) => {
 //#endregion
 
 
-//#region get all users
+//#region get all tasks
 app.get('/tasks', authenticateToken, async (req, res) => {
 
     try {
@@ -338,7 +340,7 @@ app.get('/tasks', authenticateToken, async (req, res) => {
 
 //#region Sort Task
 
-// Sort the tasks based on the provided field
+// Sort task function based on the provided field
 function sortTasks(tasks, sortField) {
     if (sortField === 'date') {
         // Sort the tasks based on the timestamp field
@@ -391,7 +393,7 @@ mongoose.connect(mongoUrl, {
         useUnifiedTopology: true
     })
     .then(() => {
-        app.listen(port, () => console.log('Server started on port 3000'));
+        app.listen(port, () => console.log(`Server started on ${port}`));
     })
     .catch(err => console.error(err));
 
