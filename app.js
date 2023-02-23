@@ -114,7 +114,7 @@ app.post('/login', async (req, res) => {
     const token = jwt.sign({
         email
     }, 'secret', {
-        expiresIn: '300000s'
+        expiresIn: '30s'
     });
 
     res.status(200).json({
