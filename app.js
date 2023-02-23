@@ -11,8 +11,6 @@ const session = require('express-session');
 app.use(bodyParser.json());
 let env = require(`dotenv`);
 let mongo = require(`mongodb`);
-let  mongoClient = mongo.MongoClient;
-let db;
 let port=process.env.PORT || 9800;
 let mongoUrl = "mongodb+srv://Admin:pass123@cluster0.jcbz5t0.mongodb.net/elRED_Assign?retryWrites=true&w=majority"
 
@@ -86,8 +84,8 @@ app.post('/login', async (req, res) => {
       port: 465,
       secure: true, // use SSL
       auth: {
-          user: 'otpfromrohit123@yahoo.com',
-          pass: 'verifyotp123'
+          user: '',
+          pass: ''
       }
   });
   
@@ -399,10 +397,3 @@ mongoose.connect(mongoUrl, {
 
 //#endregion
 
-// mongoClient.connect(mongoUrl,(err,client)=>{
-//   if(err) console.log(`Error while connecting`);
-//   db = client.db('elRED_Assign')
-//   app.listen(port,() => {
-//       console.log(`Listing to port ${port}`)
-//   })
-// })
